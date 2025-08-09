@@ -3,7 +3,7 @@
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Tags - Sudhanva&#39;s blog</title>
+        <title>CNN and its Architectures - Sudhanva&#39;s blog</title>
         
         
         <link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313/favicon_io/apple-touch-icon.png">
@@ -402,31 +402,171 @@
 </script> 
         <main>
             
-<div class="container mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold mb-8">Tags</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="w-1/2 mx-auto py-12">
+    <div class="max-w-3xl mx-auto p-8 border border-border-primary-light dark:border-border-primary-dark rounded-2xl bg-neutral-50 dark:bg-neutral-800">
+        <h1 class="text-4xl font-bold mb-4 text-text-primary-light dark:text-text-primary-dark">CNN and its Architectures</h1>
         
-        <div class="border border-gray-700 rounded-lg p-6 bg-[#1a1a1a]">
-            <a href="/tags/cnn/" class="text-xl font-semibold hover:text-gray-300">
-                CNN
-            </a>
-            <span class="text-gray-400 ml-2">(1)</span>
+        
+        <div class="prose prose-invert max-w-none">
+            
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>CNN and its Architectures</title>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Patrick Hand', cursive;
+      line-height: 1.6;
+      padding: 0 20px;
+      color: #ddd;
+      background-color: #121212;
+    }
+
+    h2 {
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #90caf9;
+    }
+
+    p {
+      margin-bottom: 18px;
+      font-size: 1.1rem;
+      color: #ddd;
+    }
+
+    strong {
+      color: #fff;
+    }
+
+    ul {
+      margin-left: 20px;
+      margin-bottom: 18px;
+      font-size: 1.1rem;
+      list-style-type: disc;
+      color: #ccc;
+    }
+
+    code {
+      background-color: #37474f;
+      color: #ffcc80;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Patrick Hand', cursive;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Why CNN Came into Existence?</h2>
+
+  <p>
+    CNNs were introduced out of necessity. <strong>Traditional neural networks (ANNs)</strong> struggled when faced with
+    image data.<br />
+    They treated images as a flat list of numbers, which made it hard to identify <strong>patterns, textures, and
+      spatial relationships</strong>.
+  </p>
+
+  <p>Let’s consider a simple example:</p>
+
+  <p>
+    A colored image of size <strong>100×100 pixels</strong> has 3 color channels (RGB).<br />
+    That’s <code>100 × 100 × 3 = 30,000</code> input values.<br />
+    If we connect this to 100 neurons in the first hidden layer of a traditional ANN,<br />
+    we already have <strong>30,000 × 100 = 3 million trainable parameters</strong> and that’s just for a single layer.
+  </p>
+
+  <p>Such huge parameter counts lead to:</p>
+  <ul>
+    <li>Increased computational cost</li>
+    <li>Overfitting</li>
+    <li>Loss of important spatial features</li>
+  </ul>
+
+  <p>
+    CNNs addressed these challenges by introducing <strong>convolutions</strong>, which drastically reduced parameters
+    while preserving spatial structure.
+  </p>
+
+  <h2>Prerequisites:</h2>
+  <ul>
+    <li><strong>Artificial Neural Networks (ANNs)</strong></li>
+    <li><strong>Padding</strong></li>
+    <li><strong>Striding</strong></li>
+    <li><strong>Pooling</strong></li>
+  </ul>
+
+  <p>Here’s a snapshot of each concept to get you up to speed:</p>
+
+  <ol>
+    <li>
+      <h3><strong>Artificial Neural Networks (ANNs):</strong> </h3>
+      <p>Artificial Neural Networks (ANNs) are computer models
+        inspired by how the human brain works. They are made up of layers of connected units called neurons. Each
+        connection has a weight that controls how strong the signal is. Data moves through these layers, and each neuron
+        does a simple calculation before passing the result to the next layer.</p>
+      <p>During training, the network learns by adjusting these weights to make better predictions. ANNs are the basic
+        building blocks of deep learning and help us understand complex data patterns.</p>
+    </li>
+    <h3>Key Components of ANN</h3>
+
+    <p><strong>Input Layer:</strong> This is where the network receives information. For example, in an image
+      recognition task, the input could be an image.</p>
+
+    <p><strong>Hidden Layers:</strong> These layers process the data received from the input layer. The more hidden
+      layers there are, the more complex patterns the network can learn and understand. Each hidden layer transforms the
+      data into more abstract information.</p>
+
+    <p><strong>Output Layer:</strong> This is where the final decision or prediction is made. For example, after
+      processing an image, the output layer might decide whether it’s a cat or a dog.</p>
+
+    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20250703121718380535/2-.webp" alt="ANN Structure"
+      style="max-width:100%; height:auto; border-radius: 6px;" />
+
+    <p style="font-size: 0.9rem; color: #aaa;">Source: <a
+        href="https://www.geeksforgeeks.org/artificial-neural-network-ann/" target="_blank" rel="noopener noreferrer"
+        style="color:#aaa;">GeeksforGeeks</a></p>
+
+    <!-- Add your pooling and striding explanations as <li> here -->
+  </ol>
+  <ol>
+    <li>
+      <h3><strong>Padding:</strong></h3>
+      <p>When an image goes through convolution (a process that looks for patterns), its size
+        usually gets smaller. This shrinking can cause important details to be lost.</p>
+      <p>
+        To avoid this, we add extra pixels around the edges of the image — this is called padding.<br>
+        For example, if
+        padding = 1, it means adding one row of pixels at the top and bottom, and one column on each side. This helps
+        keep the image size bigger after processing.</p>
+      <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220302180104/Group16.jpg"
+        alt="Padding illustration" style="max-width:100%; height:auto; border-radius: 6px;" />
+
+      <p style="font-size: 0.9rem; color: #aaa;">Source: <a href="https://www.geeksforgeeks.org/" target="_blank"
+          rel="noopener noreferrer" style="color:#aaa;">GeeksforGeeks</a></p>
+      <h3><strong>Stride</strong></h3>
+
+      <p>
+        Stride is how much the filter (a small window that scans the image) moves or "jumps" over the image when
+        processing it.<br />
+        For example, if the stride is 1, the filter moves 1 pixel at a time and calculates the output at each
+        position.<br />
+        If the stride is larger, like 2, the filter moves 2 pixels at a time, which makes the output smaller.
+      </p>
+      <img src="https://i.postimg.cc/8kFVDJ89/Screenshot-2025-07-22-224305.png" alt="Striding illustration" />
+
+
+    </li>
+
+  </ol>
+
+</body>
+
+</html>
         </div>
-        
-        <div class="border border-gray-700 rounded-lg p-6 bg-[#1a1a1a]">
-            <a href="/tags/computer-vision/" class="text-xl font-semibold hover:text-gray-300">
-                Computer Vision
-            </a>
-            <span class="text-gray-400 ml-2">(1)</span>
-        </div>
-        
-        <div class="border border-gray-700 rounded-lg p-6 bg-[#1a1a1a]">
-            <a href="/tags/deep-learning/" class="text-xl font-semibold hover:text-gray-300">
-                Deep Learning
-            </a>
-            <span class="text-gray-400 ml-2">(1)</span>
-        </div>
-        
     </div>
 </div>
 

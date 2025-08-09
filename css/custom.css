@@ -1,0 +1,22 @@
+/* Target the post title */
+.text-4xl.font-bold.mb-4.text-text-primary-light {
+    font-family: 'Montserrat', sans-serif;
+
+    /* Change to your font */
+    font-size: 3rem;
+    /* Bigger */
+    font-weight: 900;
+    /* Extra bold */
+    color: #2c3e50;
+    /* Darker color */
+}
+
+/* Dark mode title */
+.dark .text-4xl.font-bold.mb-4.text-text-primary-dark {
+    font-family: 'Montserrat', sans-serif;
+
+    font-size: 3rem;
+    font-weight: 900;
+    color: #f39c12;
+    /* Golden in dark mode */
+}
