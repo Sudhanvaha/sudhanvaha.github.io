@@ -1,60 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CNN on Sudhanva's blog</title><link>https://sudhanvaha.github.io/tags/cnn/</link><description>Recent content in CNN on Sudhanva's blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 09 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://sudhanvaha.github.io/tags/cnn/index.xml" rel="self" type="application/rss+xml"/><item><title>CNN and its Architectures</title><link>https://sudhanvaha.github.io/blog/my-first-hugo-post/</link><pubDate>Sat, 09 Aug 2025 00:00:00 +0000</pubDate><guid>https://sudhanvaha.github.io/blog/my-first-hugo-post/</guid><description>&lt;!DOCTYPE html>
-&lt;html lang="en">
-
-&lt;head>
- &lt;meta charset="UTF-8" />
- &lt;title>CNN and its Architectures&lt;/title>
- &lt;link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap" rel="stylesheet" />
- &lt;style>
- body {
- font-family: 'Patrick Hand', cursive;
- line-height: 1.6;
- padding: 0 20px;
- color: #ddd;
- background-color: #121212;
- }
-
- h2 {
- font-weight: 600;
- margin-bottom: 20px;
- color: #90caf9;
- }
-
- p {
- margin-bottom: 18px;
- font-size: 1.1rem;
- color: #ddd;
- }
-
- strong {
- color: #fff;
- }
-
- ul {
- margin-left: 20px;
- margin-bottom: 18px;
- font-size: 1.1rem;
- list-style-type: disc;
- color: #ccc;
- }
-
- code {
- background-color: #37474f;
- color: #ffcc80;
- padding: 2px 6px;
- border-radius: 4px;
- font-family: 'Patrick Hand', cursive;
- }
- &lt;/style>
-&lt;/head>
-
-&lt;body>
-
- &lt;h2>Why CNN Came into Existence?&lt;/h2>
-
- &lt;p>
- CNNs were introduced out of necessity. &lt;strong>Traditional neural networks (ANNs)&lt;/strong> struggled when faced with
- image data.&lt;br />
- They treated images as a flat list of numbers, which made it hard to identify &lt;strong>patterns, textures, and
- spatial relationships&lt;/strong>.
- &lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CNN on Sudhanva&#39;s blog</title>
+    <link>http://localhost:1313/tags/cnn/</link>
+    <description>Recent content in CNN on Sudhanva&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 09 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/cnn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CNN and its Architectures</title>
+      <link>http://localhost:1313/blog/my-first-hugo-post/</link>
+      <pubDate>Sat, 09 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/my-first-hugo-post/</guid>
+      <description>&lt;!DOCTYPE html&gt;&#xD;&#xA;&lt;html lang=&#34;en&#34;&gt;&#xD;&#xA;&#xD;&#xA;&lt;head&gt;&#xD;&#xA;  &lt;meta charset=&#34;UTF-8&#34; /&gt;&#xD;&#xA;  &lt;title&gt;CNN and its Architectures&lt;/title&gt;&#xD;&#xA;  &lt;link href=&#34;https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;  &lt;style&gt;&#xD;&#xA;    body {&#xD;&#xA;      font-family: &#39;Patrick Hand&#39;, cursive;&#xD;&#xA;      line-height: 1.6;&#xD;&#xA;      padding: 0 20px;&#xD;&#xA;      color: #ddd;&#xD;&#xA;      background-color: #121212;&#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;    h2 {&#xD;&#xA;      font-weight: 600;&#xD;&#xA;      margin-bottom: 20px;&#xD;&#xA;      color: #90caf9;&#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;    p {&#xD;&#xA;      margin-bottom: 18px;&#xD;&#xA;      font-size: 1.1rem;&#xD;&#xA;      color: #ddd;&#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;    strong {&#xD;&#xA;      color: #fff;&#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;    ul {&#xD;&#xA;      margin-left: 20px;&#xD;&#xA;      margin-bottom: 18px;&#xD;&#xA;      font-size: 1.1rem;&#xD;&#xA;      list-style-type: disc;&#xD;&#xA;      color: #ccc;&#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;    code {&#xD;&#xA;      background-color: #37474f;&#xD;&#xA;      color: #ffcc80;&#xD;&#xA;      padding: 2px 6px;&#xD;&#xA;      border-radius: 4px;&#xD;&#xA;      font-family: &#39;Patrick Hand&#39;, cursive;&#xD;&#xA;    }&#xD;&#xA;  &lt;/style&gt;&#xD;&#xA;&lt;/head&gt;&#xD;&#xA;&#xD;&#xA;&lt;body&gt;&#xD;&#xA;&#xD;&#xA;  &lt;h2&gt;Why CNN Came into Existence?&lt;/h2&gt;&#xD;&#xA;&#xD;&#xA;  &lt;p&gt;&#xD;&#xA;    CNNs were introduced out of necessity. &lt;strong&gt;Traditional neural networks (ANNs)&lt;/strong&gt; struggled when faced with&#xD;&#xA;    image data.&lt;br /&gt;&#xD;&#xA;    They treated images as a flat list of numbers, which made it hard to identify &lt;strong&gt;patterns, textures, and&#xD;&#xA;      spatial relationships&lt;/strong&gt;.&#xD;&#xA;  &lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
