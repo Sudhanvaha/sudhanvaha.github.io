@@ -3,7 +3,7 @@
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>CNN and its Architectures - Sudhanva&#39;s blog</title>
+        <title> - Sudhanva&#39;s blog</title>
         
         
         <link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313/favicon_io/apple-touch-icon.png">
@@ -405,12 +405,11 @@
 <div class="w-full mx-auto py-12 px-4 sm:px-6 lg:px-8">
     <div
         class="w-full max-w-2xl lg:max-w-3xl mx-auto p-6 sm:p-8 border border-border-primary-light dark:border-border-primary-dark rounded-2xl bg-neutral-50 dark:bg-neutral-800">
-        <h1 class="text-4xl font-bold mb-4 text-text-primary-light dark:text-text-primary-dark">CNN and its Architectures</h1>
+        <h1 class="text-4xl font-bold mb-4 text-text-primary-light dark:text-text-primary-dark"></h1>
         
 
         <div class="prose prose-invert max-w-none">
-            
-<!DOCTYPE html>
+            <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -430,6 +429,13 @@
       font-weight: 600;
       margin-bottom: 20px;
       color: #90caf9;
+    }
+
+    h3 {
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #fff;
+      /* Changed to white for better contrast */
     }
 
     p {
@@ -457,319 +463,273 @@
       border-radius: 4px;
       font-family: 'Patrick Hand', cursive;
     }
+
+    ol {
+      list-style-type: decimal !important;
+      margin-left: 2em;
+    }
+
+    ol>li {
+      margin-bottom: 1.5em;
+    }
   </style>
 </head>
 
 <body>
-
-  <h2>Why CNN Came into Existence?</h2>
-
-  <p>
-    CNNs were introduced out of necessity. <strong>Traditional neural networks (ANNs)</strong> struggled when faced with
-    image data.<br />
-    They treated images as a flat list of numbers, which made it hard to identify <strong>patterns, textures, and
-      spatial relationships</strong>.
-  </p>
-
-  <p>Let’s consider a simple example:</p>
-
-  <p>
-    A colored image of size <strong>100×100 pixels</strong> has 3 color channels (RGB).<br />
-    That’s <code>100 × 100 × 3 = 30,000</code> input values.<br />
-    If we connect this to 100 neurons in the first hidden layer of a traditional ANN,<br />
-    we already have <strong>30,000 × 100 = 3 million trainable parameters</strong> and that’s just for a single layer.
-  </p>
-
-  <p>Such huge parameter counts lead to:</p>
-  <ul>
-    <li>Increased computational cost</li>
-    <li>Overfitting</li>
-    <li>Loss of important spatial features</li>
-  </ul>
-
-  <p>
-    CNNs addressed these challenges by introducing <strong>convolutions</strong>, which drastically reduced parameters
-    while preserving spatial structure.
-  </p>
-
-  <h2>Prerequisites:</h2>
-  <ul>
-    <li><strong>Artificial Neural Networks (ANNs)</strong></li>
-    <li><strong>Padding</strong></li>
-    <li><strong>Striding</strong></li>
-    <li><strong>Pooling</strong></li>
-  </ul>
-
-  <p>Here’s a snapshot of each concept to get you up to speed:</p>
-
   <ol>
     <li>
-      <h3><strong>Artificial Neural Networks (ANNs):</strong> </h3>
-      <p>Artificial Neural Networks (ANNs) are computer models
-        inspired by how the human brain works. They are made up of layers of connected units called neurons. Each
-        connection has a weight that controls how strong the signal is. Data moves through these layers, and each neuron
-        does a simple calculation before passing the result to the next layer.</p>
-      <p>During training, the network learns by adjusting these weights to make better predictions. ANNs are the basic
-        building blocks of deep learning and help us understand complex data patterns.</p>
+      <h2>Introduction</h2>
+      <h3>Why CNN came into existence</h3>
+      <p>
+        CNNs were introduced out of necessity. <strong>Traditional neural networks (ANNs)</strong> struggled when faced
+        with image data. They treated images as a flat list of numbers, which made it hard to identify <strong>patterns,
+          textures, and spatial relationships</strong>.
+      </p>
+      <p>Let’s consider a simple example:</p>
+      <p>
+        A colored image of size <strong>100×100 pixels</strong> has 3 color channels (RGB). That’s
+        <code>100 × 100 × 3 = 30,000</code> input values. If we connect this to 100 neurons in the first hidden layer of
+        a traditional ANN, we already have <strong>30,000 × 100 = 3 million trainable parameters</strong> and that’s
+        just for a single layer.
+      </p>
+      <p>Such huge parameter counts lead to:</p>
+      <ul>
+        <li>Increased computational cost</li>
+        <li>Overfitting</li>
+        <li>Loss of important spatial features</li>
+      </ul>
+      <p>
+        CNNs addressed these challenges by introducing <strong>convolutions</strong>, which drastically reduced
+        parameters while preserving spatial structure.
+      </p>
     </li>
-    <h3>Key Components of ANN</h3>
-
-    <p><strong>Input Layer:</strong> This is where the network receives information. For example, in an image
-      recognition task, the input could be an image.</p>
-
-    <p><strong>Hidden Layers:</strong> These layers process the data received from the input layer. The more hidden
-      layers there are, the more complex patterns the network can learn and understand. Each hidden layer transforms the
-      data into more abstract information.</p>
-
-    <p><strong>Output Layer:</strong> This is where the final decision or prediction is made. For example, after
-      processing an image, the output layer might decide whether it’s a cat or a dog.</p>
-
-    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20250703121718380535/2-.webp" alt="ANN Structure"
-      style="max-width:100%; height:auto; border-radius: 6px;" />
-
-    <p style="font-size: 0.9rem; color: #aaa;">Source: <a
-        href="https://www.geeksforgeeks.org/artificial-neural-network-ann/" target="_blank" rel="noopener noreferrer"
-        style="color:#aaa;">GeeksforGeeks</a></p>
-
-    <!-- Add your pooling and striding explanations as <li> here -->
-  </ol>
-  <ol>
+    <hr />
     <li>
-      <h3><strong>Padding:</strong></h3>
-      <p>When an image goes through convolution (a process that looks for patterns), its size
-        usually gets smaller. This shrinking can cause important details to be lost.</p>
-      <p>
-        To avoid this, we add extra pixels around the edges of the image — this is called padding.<br>
-        For example, if
-        padding = 1, it means adding one row of pixels at the top and bottom, and one column on each side. This helps
-        keep the image size bigger after processing.</p>
-      <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220302180104/Group16.jpg"
-        alt="Padding illustration" style="max-width:100%; height:auto; border-radius: 6px;" />
-
-      <p style="font-size: 0.9rem; color: #aaa;">Source: <a href="https://www.geeksforgeeks.org/" target="_blank"
-          rel="noopener noreferrer" style="color:#aaa;">GeeksforGeeks</a></p>
-      <h3><strong>Stride</strong></h3>
-
-      <p>
-        Stride is how much the filter (a small window that scans the image) moves or "jumps" over the image when
-        processing it.<br />
-        For example, if the stride is 1, the filter moves 1 pixel at a time and calculates the output at each
-        position.<br />
-        If the stride is larger, like 2, the filter moves 2 pixels at a time, which makes the output smaller.
-      </p>
-      <img src="https://i.postimg.cc/8kFVDJ89/Screenshot-2025-07-22-224305.png" alt="Striding illustration" />
-      <h3>Pooling</h3>
-
-      <p>
-        Pooling is a way of reducing (downsampling) the features of an image while keeping the important information.
-        This helps make the network faster and prevents overfitting.
-      </p>
-
-      <p>
-        <strong>Types:</strong> Min, Max, Average, L2, and Global Pooling.
-      </p>
-
-      <div>
-        <img
-          src="https://www.researchgate.net/publication/333593451/figure/fig2/AS:765890261966848@1559613876098/llustration-of-Max-Pooling-and-Average-Pooling-Figure-2-above-shows-an-example-of-max.png"
-          alt="Max Pooling and Average Pooling illustration"
-          style="width:400px; max-width:100%; height:auto; border-radius:6px; display:block; margin:auto;" />
-      </div>
-
-      <p style="font-size:0.9rem; color:#aaa; text-align:center;">
-        Source: <a
-          href="https://www.researchgate.net/publication/333593451/figure/fig2/AS:765890261966848@1559613876098/llustration-of-Max-Pooling-and-Average-Pooling-Figure-2-above-shows-an-example-of-max.png"
-          target="_blank" rel="noopener noreferrer" style="color:#aaa;">ResearchGate</a>
-      </p>
-      <br></br>
-
+      <h2>Prerequisites</h2>
+      <ol>
+        <li>
+          <h3>Artificial Neural Networks (ANNs)</h3>
+          <p>Artificial Neural Networks (ANNs) are computer models inspired by how the human brain works. They are made
+            up of layers of connected units called neurons. Each connection has a weight that controls how strong the
+            signal is. Data moves through these layers, and each neuron does a simple calculation before passing the
+            result to the next layer.</p>
+          <p>During training, the network learns by adjusting these weights to make better predictions. ANNs are the
+            basic building blocks of deep learning and help us understand complex data patterns.</p>
+          <h4>Key Components of ANN</h4>
+          <p><strong>Input Layer:</strong> This is where the network receives information. For example, in an image
+            recognition task, the input could be an image.</p>
+          <p><strong>Hidden Layers:</strong> These layers process the data received from the input layer. The more
+            hidden layers there are, the more complex patterns the network can learn and understand. Each hidden layer
+            transforms the data into more abstract information.</p>
+          <p><strong>Output Layer:</strong> This is where the final decision or prediction is made. For example, after
+            processing an image, the output layer might decide whether it’s a cat or a dog.</p>
+          <img src="https://media.geeksforgeeks.org/wp-content/uploads/20250703121718380535/2-.webp" alt="ANN Structure"
+            style="max-width:100%; height:auto; border-radius: 6px;" />
+          <p style="font-size: 0.9rem; color: #aaa;">Source: <a
+              href="https://www.geeksforgeeks.org/artificial-neural-network-ann/" target="_blank"
+              rel="noopener noreferrer" style="color:#aaa;">GeeksforGeeks</a></p>
+        </li>
+        <li>
+          <h3>Padding</h3>
+          <p>When an image goes through convolution (a process that looks for patterns), its size usually gets smaller.
+            This shrinking can cause important details to be lost.</p>
+          <p>
+            To avoid this, we add extra pixels around the edges of the image — this is called padding. For example, if
+            padding = 1, it means adding one row of pixels at the top and bottom, and one column on each side. This
+            helps keep the image size bigger after processing.
+          </p>
+          <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220302180104/Group16.jpg"
+            alt="Padding illustration" style="max-width:100%; height:auto; border-radius: 6px;" />
+          <p style="font-size: 0.9rem; color: #aaa;">Source: <a href="https://www.geeksforgeeks.org/" target="_blank"
+              rel="noopener noreferrer" style="color:#aaa;">GeeksforGeeks</a></p>
+        </li>
+        <li>
+          <h3>Striding</h3>
+          <p>
+            Stride is how much the filter (a small window that scans the image) moves or "jumps" over the image when
+            processing it. For example, if the stride is 1, the filter moves 1 pixel at a time and calculates the output
+            at each position. If the stride is larger, like 2, the filter moves 2 pixels at a time, which makes the
+            output smaller.
+          </p>
+          <img src="https://i.postimg.cc/8kFVDJ89/Screenshot-2025-07-22-224305.png" alt="Striding illustration" />
+        </li>
+        <li>
+          <h3>Pooling</h3>
+          <p>
+            Pooling is a way of reducing (downsampling) the features of an image while keeping the important
+            information. This helps make the network faster and prevents overfitting.
+          </p>
+          <p>
+            <strong>Types:</strong> Min, Max, Average, L2, and Global Pooling.
+          </p>
+          <div>
+            <img
+              src="https://www.researchgate.net/publication/333593451/figure/fig2/AS:765890261966848@1559613876098/llustration-of-Max-Pooling-and-Average-Pooling-Figure-2-above-shows-an-example-of-max.png"
+              alt="Max Pooling and Average Pooling illustration"
+              style="width:400px; max-width:100%; height:auto; border-radius:6px; display:block; margin:auto;" />
+          </div>
+          <p style="font-size:0.9rem; color:#aaa; text-align:center;">
+            Source: <a
+              href="https://www.researchgate.net/publication/333593451/figure/fig2/AS:765890261966848@1559613876098/llustration-of-Max-Pooling-and-Average-Pooling-Figure-2-above-shows-an-example-of-max.png"
+              target="_blank" rel="noopener noreferrer" style="color:#aaa;">ResearchGate</a>
+          </p>
+        </li>
+      </ol>
+    </li>
+    <hr />
+    <li>
       <h2>What is a Convolutional Neural Network (CNN)?</h2>
       <p>
         A <strong>Convolutional Neural Network (CNN)</strong> is a special type of neural network mainly used for
-        working with images.
-        Unlike a traditional neural network that looks at all pixels at once, a CNN looks at small parts of the image at
-        a time and
-        detects patterns like <strong>edges</strong>, <strong>colors</strong>, and <strong>shapes</strong>.
+        working with images. Unlike a traditional neural network that looks at all pixels at once, a CNN looks at small
+        parts of the image at a time and detects patterns like <strong>edges</strong>, <strong>colors</strong>, and
+        <strong>shapes</strong>.
       </p>
-
       <p>
         These smaller patterns are then combined step-by-step to form bigger and more complex features — such as objects
-        or faces in a photo.
-        This makes CNNs especially powerful for image classification, object detection, and many other computer vision
-        tasks.
+        or faces in a photo. This makes CNNs especially powerful for image classification, object detection, and many
+        other computer vision tasks.
       </p>
-
       <p>
         Think of it like how humans look at a picture: first noticing simple shapes and colors, then putting them
-        together to recognize
-        what’s in the scene.
+        together to recognize what’s in the scene.
       </p>
-
+    </li>
+    <hr />
+    <li>
       <h2>Building Blocks of CNN</h2>
-      <h3><strong>Convolutional Layer:</strong></h3>
-      <p>
-        It acts as a <strong>pattern detector</strong>. Instead of looking at the whole image at once, it uses small
-        grids
-        called <strong>filters</strong> (or <strong>kernels</strong>) that scan across the image, piece by piece.
-      </p>
-      <ul>
-        <li>Each filter is designed to find a specific kind of feature — for example, vertical edges, horizontal edges,
-          curves, or textures.</li>
-        <li>As the filter slides over the image, it performs a <strong>convolutional operation</strong> (dot product)
-          between its weights and the pixel values in the current patch.</li>
-        <li>The result after the dot product is called a <strong>feature map</strong>, which highlights where that
-          specific pattern appears in the image.</li>
-      </ul>
-      <p>
-        Over multiple layers, these filters start detecting more complex things:
-      </p>
-      <ul>
-        <li><strong>First layer →</strong> edges and simple shapes.</li>
-        <li><strong>Middle layers →</strong> patterns like eyes, wheels, textures.</li>
-        <li><strong>Deeper layers →</strong> entire objects like faces or cars.</li>
-      </ul>
-      <h4>Feature Map Dimension Formula:</h4>
-      <p>
-        The output size (dimension) of a feature map can be calculated as:
-      </p>
-      <pre style="background-color:#37474f; color:#ffcc80; padding:8px; border-radius:6px;">
-        (n + 2p - f) / s + 1
-      </pre>
-      <ul>
-        <li><strong>n</strong> → Size (width/height) of the input image.</li>
-        <li><strong>p</strong> → Padding (extra pixels added around the image).</li>
-        <li><strong>f</strong> → Filter (kernel) size.</li>
-        <li><strong>s</strong> → Stride (number of pixels the filter moves at each step).</li>
-      </ul>
-      <div style="display: flex; justify-content: center; margin-top: 20px;">
-        <img src="https://anhreynolds.com/img/cnn.png" alt="Convolution operation example"
-          style="width:400px; max-width:100%; height:auto; border-radius:6px;" />
-      </div>
-      <p style="font-size:0.9rem; color:#aaa; text-align:center;">
-        Source: <a href="https://anhreynolds.com/img/cnn.png" target="_blank" rel="noopener noreferrer"
-          style="color:#aaa;">
-          Anh Reynolds
-        </a>
-      </p>
-      <h3><strong>Activation Functions:</strong></h3>
-      <p>
-        An <strong>activation function</strong> is a small mathematical formula that decides whether a neuron should be
-        “active” or not, and how much signal it should pass forward in a neural network.
-      </p>
-
-      <h4>How it Works:</h4>
-      <ul>
+      <ol>
         <li>
-          <strong>Takes the inputs →</strong> The neuron receives signals from previous neurons (e.g., <code>x1</code>,
-          <code>x2</code>, <code>x3</code>).
+          <h3><strong>Convolutional Layer:</strong></h3>
+          <p>
+            It acts as a <strong>pattern detector</strong>. Instead of looking at the whole image at once, it uses small
+            grids called <strong>filters</strong> (or <strong>kernels</strong>) that scan across the image, piece by
+            piece.
+          </p>
+          <ul>
+            <li>Each filter is designed to find a specific kind of feature — for example, vertical edges, horizontal
+              edges, curves, or textures.</li>
+            <li>As the filter slides over the image, it performs a <strong>convolutional operation</strong> (dot
+              product) between its weights and the pixel values in the current patch.</li>
+            <li>The result after the dot product is called a <strong>feature map</strong>, which highlights where that
+              specific pattern appears in the image.</li>
+          </ul>
+          <p>Over multiple layers, these filters start detecting more complex things:</p>
+          <ul>
+            <li><strong>First layer →</strong> edges and simple shapes.</li>
+            <li><strong>Middle layers →</strong> patterns like eyes, wheels, textures.</li>
+            <li><strong>Deeper layers →</strong> entire objects like faces or cars.</li>
+          </ul>
+          <h4>Feature Map Dimension Formula:</h4>
+          <p>The output size (dimension) of a feature map can be calculated as:</p>
+          <pre style="background-color:#37474f; color:#ffcc80; padding:8px; border-radius:6px;">
+(n + 2p - f) / s + 1
+</pre>
+          <ul>
+            <li><strong>n</strong> → Size (width/height) of the input image.</li>
+            <li><strong>p</strong> → Padding (extra pixels added around the image).</li>
+            <li><strong>f</strong> → Filter (kernel) size.</li>
+            <li><strong>s</strong> → Stride (number of pixels the filter moves at each step).</li>
+          </ul>
+          <div style="display: flex; justify-content: center; margin-top: 20px;">
+            <img src="https://anhreynolds.com/img/cnn.png" alt="Convolution operation example"
+              style="width:400px; max-width:100%; height:auto; border-radius:6px;" />
+          </div>
+          <p style="font-size:0.9rem; color:#aaa; text-align:center;">
+            Source: <a href="https://anhreynolds.com/img/cnn.png" target="_blank" rel="noopener noreferrer"
+              style="color:#aaa;">Anh Reynolds</a>
+          </p>
         </li>
         <li>
-          <strong>Multiply by weights →</strong> Each input is multiplied by its connection weight (e.g.,
-          <code>w1</code>, <code>w2</code>, <code>w3</code>).
+          <h3><strong>Activation Functions:</strong></h3>
+          <p>
+            An <strong>activation function</strong> is a small mathematical formula that decides whether a neuron should
+            be “active” or not, and how much signal it should pass forward in a neural network.
+          </p>
+          <h4>How it Works:</h4>
+          <ul>
+            <li><strong>Takes the inputs →</strong> The neuron receives signals from previous neurons (e.g.,
+              <code>x1</code>, <code>x2</code>, <code>x3</code>).</li>
+            <li><strong>Multiply by weights →</strong> Each input is multiplied by its connection weight (e.g.,
+              <code>w1</code>, <code>w2</code>, <code>w3</code>).</li>
+            <li><strong>Add them up →</strong> The weighted inputs are summed:
+              <pre style="background-color:#37474f; color:#ffcc80; padding:6px; border-radius:6px;">
+z = (x1 × w1) + (x2 × w2) + (x3 × w3)
+</pre>
+            </li>
+            <li><strong>Add the bias →</strong> A bias term is added to shift the sum:
+              <pre style="background-color:#37474f; color:#ffcc80; padding:6px; border-radius:6px;">z = z + b</pre>
+            </li>
+            <li><strong>Pass through activation function →</strong> The activation function checks how strong the signal
+              is.</li>
+            <li><strong>Inactive example (ReLU) →</strong>
+              <pre
+                style="background-color:#37474f; color:#ffcc80; padding:6px; border-radius:6px;">ReLU(z) = max(0, z)</pre>
+              If <code>z = -2.3</code> → output is <code>0</code>. If <code>z = 5.1</code> → output is <code>5.1</code>.
+            </li>
+            <li><strong>Send to next layer →</strong> The output from the activation function becomes input to neurons
+              in the next layer.</li>
+          </ul>
+          <p>
+            The main reason we use activation functions is to add <strong>non-linearity</strong>. Without them, the
+            network would only learn simple straight-line relationships between inputs and outputs.
+          </p>
+          <p>Some commonly used activation functions include:</p>
+          <ul>
+            <li><strong>Sigmoid</strong> — outputs values between 0 and 1.</li>
+            <li><strong>Tanh</strong> — outputs values between -1 and 1.</li>
+            <li><strong>ReLU (Rectified Linear Unit)</strong> — keeps positive values, turns negative ones to zero.</li>
+            <li><strong>Leaky ReLU</strong> — similar to ReLU but allows small negative values.</li>
+            <li><strong>Softmax</strong> — often used in the output layer for classification problems.</li>
+          </ul>
         </li>
         <li>
-          <strong>Add them up →</strong> The weighted inputs are summed:
-          <pre
-            style="background-color:#37474f; color:#ffcc80; padding:6px; border-radius:6px;">z = (x1 × w1) + (x2 × w2) + (x3 × w3)</pre>
-        </li>
-        <li>
-          <strong>Add the bias →</strong> A bias term is added to shift the sum:
-          <pre style="background-color:#37474f; color:#ffcc80; padding:6px; border-radius:6px;">z = z + b</pre>
-        </li>
-        <li>
-          <strong>Pass through activation function →</strong> The activation function checks how strong the signal is.
-        </li>
-        <li>
-          <strong>Inactive example (ReLU) →</strong>
-          <pre
-            style="background-color:#37474f; color:#ffcc80; padding:6px; border-radius:6px;">ReLU(z) = max(0, z)</pre>
-          If <code>z = -2.3</code> → output is <code>0</code> (neuron is inactive — sends no signal forward).
-          If <code>z = 5.1</code> → output is <code>5.1</code> (neuron is active — passes signal forward).
-        </li>
-        <li>
-          <strong>Send to next layer →</strong> The output from the activation function becomes input to neurons in the
-          next layer.
-        </li>
-      </ul>
-      <p>
-        The main reason we use activation functions is to add <strong>non-linearity</strong>. Without them, the network
-        would only learn simple straight-line relationships between inputs and outputs, no matter how many layers it
-        had.
-        With activation functions, the network can learn curves, patterns, and features in the data making it powerful
-        enough for tasks like image recognition, speech understanding, and more.
-      </p>
-      <p>
-        Some commonly used activation functions include:
-      </p>
-      <ul>
-        <li><strong>Sigmoid</strong> — outputs values between 0 and 1.</li>
-        <li><strong>Tanh</strong> — outputs values between -1 and 1.</li>
-        <li><strong>ReLU (Rectified Linear Unit)</strong> — keeps positive values, turns negative ones to zero.</li>
-        <li><strong>Leaky ReLU</strong> — similar to ReLU but allows small negative values.</li>
-        <li><strong>Softmax</strong> — often used in the output layer for classification problems.</li>
-      </ul>
-      <p>
-        We will explore these activation functions in detail in a separate blog post.
-      </p>
-      <br>
-      <h3><strong>Pooling Layer:</strong></h3>
-      <p>
-        We already gave a short intro to pooling in the prerequisites section. Let’s now understand it in detail.
-      </p>
-
-      <p>
-        Pooling is a way of shrinking the feature map while keeping the most important parts.
-        It makes the network faster, uses less memory, and helps it still recognize patterns even if they shift slightly
-        in the image.
-      </p>
-
-      <h4>Why pooling is used:</h4>
-      <ul>
-        <li><strong>Speeds up computation:</strong> Less data for the network to process.</li>
-        <li><strong>Reduces overfitting:</strong> Makes the network less likely to memorize training data.</li>
-        <li><strong>Gives spatial invariance:</strong> Features are recognized even if they move slightly.</li>
-      </ul>
-
-      <h4>How it works:</h4>
-      <ul>
-        <li>A pooling layer slides a small window (e.g., 2×2) over the feature map</li>
-        <li>Instead of multiplying and summing like in convolution, it performs a simple calculation in each window
-          (like max or average).</li>
-        <li>The output is a smaller version of the feature map, but with important patterns preserved.</li>
-      </ul>
-
-      <h4>Example (Max Pooling, 2×2 kernel, stride = 2):</h4>
-      <p><strong>Input feature map:</strong></p>
-      <pre style="background-color:#37474f; color:#ffcc80; padding:8px; border-radius:6px;">
+          <h3><strong>Pooling Layer:</strong></h3>
+          <p>We already gave a short intro to pooling in the prerequisites section. Let’s now understand it in detail.
+          </p>
+          <p>
+            Pooling is a way of shrinking the feature map while keeping the most important parts.
+          </p>
+          <h4>Why pooling is used:</h4>
+          <ul>
+            <li><strong>Speeds up computation:</strong> Less data for the network to process.</li>
+            <li><strong>Reduces overfitting:</strong> Makes the network less likely to memorize training data.</li>
+            <li><strong>Gives spatial invariance:</strong> Features are recognized even if they move slightly.</li>
+          </ul>
+          <h4>How it works:</h4>
+          <ul>
+            <li>A pooling layer slides a small window (e.g., 2×2) over the feature map</li>
+            <li>Instead of multiplying and summing like in convolution, it performs a simple calculation in each window.
+            </li>
+            <li>The output is a smaller version of the feature map, but with important patterns preserved.</li>
+          </ul>
+          <h4>Example (Max Pooling, 2×2 kernel, stride = 2):</h4>
+          <pre style="background-color:#37474f; color:#ffcc80; padding:8px; border-radius:6px;">
 [ 1   3   2   4 ]
 [ 5   6   7   8 ]
 [ 9   2   0   1 ]
 [ 4   5   6   7 ]
 </pre>
-
-      <p><strong>Pooling steps:</strong></p>
-      <ul>
-        <li>First 2×2 block → max is 6</li>
-        <li>Second 2×2 block → max is 8</li>
-        <li>Third 2×2 block → max is 9</li>
-        <li>Fourth 2×2 block → max is 7</li>
-      </ul>
-
-      <p><strong>Output feature map:</strong></p>
-      <pre style="background-color:#37474f; color:#ffcc80; padding:8px; border-radius:6px;">
-        [ 6   8 ]
-        [ 9   7 ]
-      </pre>
-
-      <h4>Common types of pooling:</h4>
-      <ol>
-        <li><strong>Max Pooling:</strong> Keeps the largest value in each window.</li>
-        <li><strong>Average Pooling:</strong> Takes the average in each window.</li>
-        <li><strong>Global Pooling:</strong> Reduces the entire feature map to a single value.</li>
+          <ul>
+            <li>First 2×2 block → max is 6</li>
+            <li>Second 2×2 block → max is 8</li>
+            <li>Third 2×2 block → max is 9</li>
+            <li>Fourth 2×2 block → max is 7</li>
+          </ul>
+          <pre style="background-color:#37474f; color:#ffcc80; padding:8px; border-radius:6px;">
+[ 6   8 ]
+[ 9   7 ]
+</pre>
+          <h4>Common types of pooling:</h4>
+          <ol>
+            <li><strong>Max Pooling:</strong> Keeps the largest value in each window.</li>
+            <li><strong>Average Pooling:</strong> Takes the average in each window.</li>
+            <li><strong>Global Pooling:</strong> Reduces the entire feature map to a single value.</li>
+          </ol>
+        </li>
       </ol>
-
+    </li>
   </ol>
-
 </body>
 
 </html>
