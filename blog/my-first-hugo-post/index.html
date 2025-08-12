@@ -651,8 +651,66 @@
           Anh Reynolds
         </a>
       </p>
+      <h3><strong>Activation Functions:</strong></h3>
+      <p>
+        An <strong>activation function</strong> is a small mathematical formula that decides whether a neuron should be
+        “active” or not, and how much signal it should pass forward in a neural network.
+      </p>
 
-    </li>
+      <h4>How it Works:</h4>
+      <ul>
+        <li>
+          <strong>Takes the inputs →</strong> The neuron receives signals from previous neurons (e.g., <code>x1</code>,
+          <code>x2</code>, <code>x3</code>).
+        </li>
+        <li>
+          <strong>Multiply by weights →</strong> Each input is multiplied by its connection weight (e.g.,
+          <code>w1</code>, <code>w2</code>, <code>w3</code>).
+        </li>
+        <li>
+          <strong>Add them up →</strong> The weighted inputs are summed:
+          <pre
+            style="background-color:#37474f; color:#ffcc80; padding:6px; border-radius:6px;">z = (x1 × w1) + (x2 × w2) + (x3 × w3)</pre>
+        </li>
+        <li>
+          <strong>Add the bias →</strong> A bias term is added to shift the sum:
+          <pre style="background-color:#37474f; color:#ffcc80; padding:6px; border-radius:6px;">z = z + b</pre>
+        </li>
+        <li>
+          <strong>Pass through activation function →</strong> The activation function checks how strong the signal is.
+        </li>
+        <li>
+          <strong>Inactive example (ReLU) →</strong>
+          <pre
+            style="background-color:#37474f; color:#ffcc80; padding:6px; border-radius:6px;">ReLU(z) = max(0, z)</pre>
+          If <code>z = -2.3</code> → output is <code>0</code> (neuron is inactive — sends no signal forward).
+          If <code>z = 5.1</code> → output is <code>5.1</code> (neuron is active — passes signal forward).
+        </li>
+        <li>
+          <strong>Send to next layer →</strong> The output from the activation function becomes input to neurons in the
+          next layer.
+        </li>
+      </ul>
+      <p>
+        The main reason we use activation functions is to add <strong>non-linearity</strong>. Without them, the network
+        would only learn simple straight-line relationships between inputs and outputs, no matter how many layers it
+        had.
+        With activation functions, the network can learn curves, patterns, and features in the data making it powerful
+        enough for tasks like image recognition, speech understanding, and more.
+      </p>
+      <p>
+        Some commonly used activation functions include:
+      </p>
+      <ul>
+        <li><strong>Sigmoid</strong> — outputs values between 0 and 1.</li>
+        <li><strong>Tanh</strong> — outputs values between -1 and 1.</li>
+        <li><strong>ReLU (Rectified Linear Unit)</strong> — keeps positive values, turns negative ones to zero.</li>
+        <li><strong>Leaky ReLU</strong> — similar to ReLU but allows small negative values.</li>
+        <li><strong>Softmax</strong> — often used in the output layer for classification problems.</li>
+      </ul>
+      <p>
+        We will explore these activation functions in detail in a separate blog post.
+      </p>
 
   </ol>
 
