@@ -469,8 +469,22 @@
       margin-left: 2em;
     }
 
+
     ol>li {
       margin-bottom: 1.5em;
+    }
+
+    /* Add this to your <style> block */
+    .pooling-list>li {
+      margin-bottom: 0.5em;
+      /* or whatever spacing you prefer */
+    }
+
+
+
+    .pooling-list>li:last-child {
+      margin-bottom: 0;
+      /* Remove margin from the very last list item */
     }
   </style>
 </head>
@@ -649,9 +663,11 @@
           <h4>How it Works:</h4>
           <ul>
             <li><strong>Takes the inputs →</strong> The neuron receives signals from previous neurons (e.g.,
-              <code>x1</code>, <code>x2</code>, <code>x3</code>).</li>
+              <code>x1</code>, <code>x2</code>, <code>x3</code>).
+            </li>
             <li><strong>Multiply by weights →</strong> Each input is multiplied by its connection weight (e.g.,
-              <code>w1</code>, <code>w2</code>, <code>w3</code>).</li>
+              <code>w1</code>, <code>w2</code>, <code>w3</code>).
+            </li>
             <li><strong>Add them up →</strong> The weighted inputs are summed:
               <pre style="background-color:#37474f; color:#ffcc80; padding:6px; border-radius:6px;">
 z = (x1 × w1) + (x2 × w2) + (x3 × w3)
@@ -721,14 +737,76 @@ z = (x1 × w1) + (x2 × w2) + (x3 × w3)
 [ 9   7 ]
 </pre>
           <h4>Common types of pooling:</h4>
-          <ol>
-            <li><strong>Max Pooling:</strong> Keeps the largest value in each window.</li>
-            <li><strong>Average Pooling:</strong> Takes the average in each window.</li>
-            <li><strong>Global Pooling:</strong> Reduces the entire feature map to a single value.</li>
+          <ol class="pooling-list">
+              <li><strong>Max Pooling:</strong> Keeps the largest value in each window.</li>
+              <li><strong>Average Pooling:</strong> Takes the average in each window.</li>
+              <li><strong>Global Pooling:</strong> Reduces the entire feature map to a single value.</li>
           </ol>
         </li>
+        <li>
+          <h3>Fully Connected Layer</h3>
+          <p>
+            A <strong>fully connected layer</strong> is a traditional type of neural network layer where every neuron is
+            connected to every neuron in the previous layer. Its main job in a CNN is to take the high-level features
+            extracted by the convolutional and pooling layers and use them to make a final prediction.
+          </p>
+          <p>
+            After the convolutional and pooling layers have done their job of finding and simplifying all the important
+            features in an image (like edges, shapes, or textures), this layer takes all that information and uses it to
+            make a final decision. Think of it as the final stage of the network, where all the learned features are
+            combined to make a confident classification.
+          </p>
+          <h4>How It Calculates Its Output</h4>
+          <p>The fully connected layer operates in a few key steps:</p>
+          <ul>
+            <li><strong>Flattening:</strong> Before the data can enter the fully connected layer, the 2D or 3D feature
+              maps from the last pooling layer are <strong>flattened</strong> into a single, long line of numbers (a
+              vector). This process essentially converts the spatial data into a one-dimensional format suitable for a
+              traditional neural network.</li>
+            <li><strong>Connecting:</strong> This flattened vector is then fed into the fully connected layer. Every
+              single value in the vector is connected to every neuron in this new layer.</li>
+            <li><strong>Making a Prediction:</strong> Each neuron in the fully connected layer performs a weighted sum
+              of all the inputs it receives. The output of a single neuron is calculated using the following formula:
+            </li>
+          </ul>
+          <pre style="background-color:#37474f; color:#ffcc80; padding:8px; border-radius:6px;">
+ y = f( Σ<sub>i=1</sub><sup>n</sup> w<sub>i</sub>x<sub>i</sub> + b )
+</pre>
+          <div style="display: flex; justify-content: center; margin-top: 20px;">
+            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20250529112722673975/file.webp"
+              alt="Neuron working example" style="width:400px; max-width:100%; height:auto; border-radius:6px;" />
+          </div>
+          <p style="font-size:0.9rem; color:#aaa; text-align:center;">
+            Source: <a href="https://www.geeksforgeeks.org" target="_blank" rel="noopener noreferrer"
+              style="color:#aaa;">
+              GeeksforGeeks
+            </a>
+          </p>
+
+          <ul>
+            <li><strong>y</strong> is the output of the neuron.</li>
+            <li><strong>f</strong> is the <strong>activation function</strong> (e.g., ReLU or Softmax).</li>
+            <li><strong>w<sub>i</sub></strong> is the weight of the connection from the <em>i</em>-th input.</li>
+            <li><strong>x<sub>i</sub></strong> is the value of the <em>i</em>-th input from the flattened vector.</li>
+            <li><strong>b</strong> is the bias term, which shifts the activation.</li>
+            <li>The summation (Σ) is performed over all <em>n</em> inputs from the previous layer.</li>
+          </ul>
+
+          <p>
+            The final layer often uses a function like <strong>Softmax</strong> to turn these outputs into probabilities
+            for each possible class. For example, in an image classification task, the output might show an 80%
+            probability for "dog," 10% for "cat," and 10% for "bird."
+          </p>
+          <p>
+            In short, the convolutional and pooling layers find the puzzle pieces, and the fully connected layer puts
+            them all together to see the final picture and make a decision about what it is.
+          </p>
+
+        </li>
+
       </ol>
     </li>
+
   </ol>
 </body>
 

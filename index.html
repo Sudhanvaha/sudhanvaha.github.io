@@ -406,7 +406,7 @@
 <h1>Latest Post</h1>
 
 <article>
-    <h2><a href="./blog/my-first-hugo-post/">CNN and its Architectures</a></h2>
+    <h2><a href="./blog/my-first-hugo-post/"></a></h2>
     <p><!DOCTYPE html>
 <html lang="en">
 
@@ -427,6 +427,13 @@
       font-weight: 600;
       margin-bottom: 20px;
       color: #90caf9;
+    }
+
+    h3 {
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #fff;
+      /* Changed to white for better contrast */
     }
 
     p {
@@ -454,19 +461,42 @@
       border-radius: 4px;
       font-family: 'Patrick Hand', cursive;
     }
+
+    ol {
+      list-style-type: decimal !important;
+      margin-left: 2em;
+    }
+
+
+    ol>li {
+      margin-bottom: 1.5em;
+    }
+
+    /* Add this to your <style> block */
+    .pooling-list>li {
+      margin-bottom: 0.5em;
+      /* or whatever spacing you prefer */
+    }
+
+
+
+    .pooling-list>li:last-child {
+      margin-bottom: 0;
+      /* Remove margin from the very last list item */
+    }
   </style>
 </head>
 
 <body>
-
-  <h2>Why CNN Came into Existence?</h2>
-
-  <p>
-    CNNs were introduced out of necessity. <strong>Traditional neural networks (ANNs)</strong> struggled when faced with
-    image data.<br />
-    They treated images as a flat list of numbers, which made it hard to identify <strong>patterns, textures, and
-      spatial relationships</strong>.
-  </p></p>
+  <ol>
+    <li>
+      <h2>Introduction</h2>
+      <h3>Why CNN came into existence</h3>
+      <p>
+        CNNs were introduced out of necessity. <strong>Traditional neural networks (ANNs)</strong> struggled when faced
+        with image data. They treated images as a flat list of numbers, which made it hard to identify <strong>patterns,
+          textures, and spatial relationships</strong>.
+      </p></p>
     <a href="./blog/my-first-hugo-post/">Continue reading →</a>
 </article>
 
