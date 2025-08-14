@@ -423,6 +423,16 @@
       padding: 0 20px;
       color: #ddd;
       background-color: #121212;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-weight: 800;
+      margin-top: 20px;
+      margin-bottom: 25px;
+      text-align: center;
+      color: #90caf9;
+      font-size: 2.5rem;
     }
 
     h2 {
@@ -435,7 +445,12 @@
       font-weight: 600;
       margin-bottom: 15px;
       color: #fff;
-      /* Changed to white for better contrast */
+    }
+
+    h4 {
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #fff;
     }
 
     p {
@@ -469,27 +484,14 @@
       margin-left: 2em;
     }
 
-
     ol>li {
       margin-bottom: 1.5em;
-    }
-
-    /* Add this to your <style> block */
-    .pooling-list>li {
-      margin-bottom: 0.5em;
-      /* or whatever spacing you prefer */
-    }
-
-
-
-    .pooling-list>li:last-child {
-      margin-bottom: 0;
-      /* Remove margin from the very last list item */
     }
   </style>
 </head>
 
 <body>
+  <h1>CNN and its Architectures</h1>
   <ol>
     <li>
       <h2>Introduction</h2>
@@ -565,7 +567,10 @@
             at each position. If the stride is larger, like 2, the filter moves 2 pixels at a time, which makes the
             output smaller.
           </p>
-          <img src="https://i.postimg.cc/8kFVDJ89/Screenshot-2025-07-22-224305.png" alt="Striding illustration" />
+          <div style="display: flex; justify-content: center; margin-top: 20px;">
+            <img src="https://i.postimg.cc/8kFVDJ89/Screenshot-2025-07-22-224305.png" alt="Striding illustration"
+              style="width: 600px; max-width:100%; height:auto; border-radius:6px;" />
+          </div>
         </li>
         <li>
           <h3>Pooling</h3>
@@ -737,10 +742,10 @@ z = (x1 × w1) + (x2 × w2) + (x3 × w3)
 [ 9   7 ]
 </pre>
           <h4>Common types of pooling:</h4>
-          <ol class="pooling-list">
-              <li><strong>Max Pooling:</strong> Keeps the largest value in each window.</li>
-              <li><strong>Average Pooling:</strong> Takes the average in each window.</li>
-              <li><strong>Global Pooling:</strong> Reduces the entire feature map to a single value.</li>
+          <ol>
+            <li><strong>Max Pooling:</strong> Keeps the largest value in each window.</li>
+            <li><strong>Average Pooling:</strong> Takes the average in each window.</li>
+            <li><strong>Global Pooling:</strong> Reduces the entire feature map to a single value.</li>
           </ol>
         </li>
         <li>
@@ -770,7 +775,7 @@ z = (x1 × w1) + (x2 × w2) + (x3 × w3)
             </li>
           </ul>
           <pre style="background-color:#37474f; color:#ffcc80; padding:8px; border-radius:6px;">
- y = f( Σ<sub>i=1</sub><sup>n</sup> w<sub>i</sub>x<sub>i</sub> + b )
+y = f( Σ<sub>i=1</sub><sup>n</sup> w<sub>i</sub>x<sub>i</sub> + b )
 </pre>
           <div style="display: flex; justify-content: center; margin-top: 20px;">
             <img src="https://media.geeksforgeeks.org/wp-content/uploads/20250529112722673975/file.webp"
@@ -801,12 +806,74 @@ z = (x1 × w1) + (x2 × w2) + (x3 × w3)
             In short, the convolutional and pooling layers find the puzzle pieces, and the fully connected layer puts
             them all together to see the final picture and make a decision about what it is.
           </p>
-
         </li>
-
       </ol>
     </li>
+    <hr />
+    <li>
+      <h2>How CNN Works.</h2>
+      <p>Now that we have covered the individual building blocks, let's examine the complete step-by-step process of how
+        a CNN processes an input image.</p>
+      <div style="display: flex; justify-content: center; margin-top: 20px;">
+        <img src="https://miro.medium.com/v2/resize%3Afit%3A1400/1%2AQ6yA_1B_vsdGWAAwB8Z7rA.png"
+          alt="CNN workflow visual example" style="width:400px; max-width:100%; height:auto; border-radius:6px;" />
+      </div>
+      <p style="font-size:0.9rem; color:#aaa; text-align:center;">
+        Source: <a href="https://miro.medium.com/v2/resize%3Afit%3A1400/1%2AQ6yA_1B_vsdGWAAwB8Z7rA.png" target="_blank"
+          rel="noopener noreferrer" style="color:#aaa;">Medium</a>
+      </p>
+      <p>The general workflow is:
+        <br><strong>Image → Convolution → Activation → Pooling → Flatten → Fully Connected → Output</strong>
+      </p>
+      <h4>The Journey of an Image</h4>
+      <ol>
+        <li><strong>Input Image:</strong> The process begins with an input image, which is represented as a grid of
+          pixel values (e.g., a 2D array for a grayscale image or a 3D array for a color image).</li>
+        <li><strong>Convolutional Layers:</strong> The network applies multiple filters to the input image, generating a
+          set of <strong>feature maps</strong>. Each filter is designed to detect a specific feature (e.g., edges,
+          textures, or shapes) at different locations in the image.</li>
+        <li><strong>Activation (ReLU):</strong> The feature maps are then passed through a non-linear activation
+          function, such as ReLU. This introduces non-linearity into the model, allowing it to learn more complex
+          patterns.</li>
+        <li><strong>Pooling Layers:</strong> A pooling operation (like max pooling) is applied to each feature map. This
+          step reduces the spatial dimensions of the feature maps, which decreases computational load and helps create
+          spatial invariance, meaning the network can recognize a feature regardless of its exact position in the image.
+        </li>
+        <li><strong>Flattening:</strong> The final output from the convolutional and pooling layers is a collection of
+          2D feature maps. The flattening step converts these feature maps into a single, long 1D vector, which is
+          required as input for the next part of the network.</li>
+        <li><strong>Fully Connected Layers:</strong> This is where the classification happens. The 1D vector is fed into
+          one or more fully connected layers, which are a part of a traditional Artificial Neural Network (ANN). These
+          layers combine the high-level features extracted by the convolutional layers to make a final prediction.</li>
+        <li><strong>Output Layer:</strong> The final layer of the network, which provides the output. For a
+          classification task, this layer will output probabilities for each class (e.g., the likelihood that the image
+          contains a cat, dog, or bird).</li>
+      </ol>
+      <p>Below is a Python code snippet that demonstrates the construction of a CNN model using the Keras framework,
+        mirroring the workflow you see in the diagram above.</p>
+      <pre style="background-color:#37474f; color:#ffcc80; padding:8px; border-radius:6px;">
+<code>import tensorflow as tf
+from tensorflow.keras import layers, models
 
+def cnn_model(input_shape=(64, 64, 3), num_classes=2):
+    model = models.Sequential([
+        layers.Conv2D(32, (3, 3), activation='relu', input_shape=input_shape),
+        layers.MaxPooling2D((2, 2)),
+        layers.Conv2D(64, (3, 3), activation='relu'),
+        layers.MaxPooling2D((2, 2)),
+        layers.Flatten(),
+        layers.Dense(64, activation='relu'),
+        layers.Dense(num_classes, activation='softmax')
+    ])
+    model.compile(optimizer='adam',
+                  loss='sparse_categorical_crossentropy',
+                  metrics=['accuracy'])
+    return model
+
+my_model = cnn_model()
+my_model.summary()
+</code></pre>
+    </li>
   </ol>
 </body>
 
